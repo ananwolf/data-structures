@@ -17,16 +17,15 @@ var Stack = function() {
     delete storage[currentKey];
     currentKey--;
     size--;
+    if (size < 0) {
+      currentKey++;
+      size++;
+    }
     return storage[currentKey];
   };
 
   someInstance.size = function() {
-    return size < 0 ? 0 : size;
+    return size;
   };
-
   return someInstance;
 };
-
-// ReferenceError: stroage is not defined
-//     at Object.Stack.someInstance.size (src/functional/stack.js:23:7)
-//     at Context.<anonymous> (spec/specs.js:44:22)

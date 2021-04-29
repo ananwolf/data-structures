@@ -15,18 +15,18 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
-    if (size === 0) {
-      return;
-    }
     frontQueue++;
     var keyToBeDeleted = storage[frontQueue];
     delete storage[frontQueue];
     size--;
+    if (size < 0) {
+      size++;
+    }
     return keyToBeDeleted;
   };
 
   someInstance.size = function() {
-    return size < 0 ? 0 : size;
+    return size;
   };
 
   return someInstance;
