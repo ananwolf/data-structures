@@ -10,15 +10,13 @@ Stack.prototype.push = function(value) {
 };
 
 Stack.prototype.pop = function() {
-  var popped = this[this.currentKey];
-  delete this[this.currentKey];
-  this.currentKey--;
-  this.amount--;
-  if (this.amount < 0) {
-    this.currentKey++;
-    this.amount++;
+  if (this.amount !== 0) {
+    var popped = this[this.currentKey];
+    delete this[this.currentKey];
+    this.currentKey--;
+    this.amount--;
+    return popped;
   }
-  return popped;
 };
 
 Stack.prototype.size = function() {

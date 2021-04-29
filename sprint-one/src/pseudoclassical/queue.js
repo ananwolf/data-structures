@@ -11,14 +11,13 @@ Queue.prototype.enqueue = function(value) {
 };
 
 Queue.prototype.dequeue = function() {
-  this.frontQueue++;
-  this.amount--;
-  if (this.amount < 0) {
-    this.amount++;
+  if (this.amount !== 0) {
+    this.frontQueue++;
+    this.amount--;
+    var dequeued = this[this.frontQueue];
+    delete this[this.frontQueue];
+    return dequeued;
   }
-  var dequeued = this[this.frontQueue];
-  delete this[this.frontQueue];
-  return dequeued;
 };
 
 Queue.prototype.size = function() {

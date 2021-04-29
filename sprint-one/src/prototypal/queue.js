@@ -15,13 +15,12 @@ queueMethods.enqueue = function(value) {
 };
 
 queueMethods.dequeue = function() {
-  this.frontQueue++;
-  this.amount--;
-  if (this.amount < 0) {
-    this.amount++;
+  if (this.amount !== 0) {
+    this.frontQueue++;
+    this.amount--;
+    var dequeued = this[this.frontQueue];
+    return dequeued;
   }
-  var dequeued = this[this.frontQueue];
-  return dequeued;
 };
 
 queueMethods.size = function() {

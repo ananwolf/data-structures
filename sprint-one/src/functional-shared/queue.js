@@ -16,14 +16,13 @@ queueMethods.enqueue = function(value) {
 };
 
 queueMethods.dequeue = function() {
-  this.frontQueue++;
-  var dequeued = this[this.frontQueue];
-  delete this[this.frontQueue];
-  this.amount--;
-  if (this.amount < 0) {
-    this.amount++;
+  if (this.amount !== 0) {
+    this.frontQueue++;
+    this.amount--;
+    var dequeued = this[this.frontQueue];
+    delete this[this.frontQueue];
+    return dequeued;
   }
-  return dequeued;
 };
 
 queueMethods.size = function() {

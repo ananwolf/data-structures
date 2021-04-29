@@ -15,15 +15,13 @@ stackMethods.push = function(value) {
 };
 
 stackMethods.pop = function() {
-  var poppedItem = this[this.currentKey];
-  delete this[this.currentKey];
-  this.currentKey--;
-  this.amount--;
-  if (this.amount < 0) {
-    this.currentKey++;
-    this.amount++;
+  if (this.amount !== 0) {
+    var popped = this[this.currentKey];
+    delete this[this.currentKey];
+    this.currentKey--;
+    this.amount--;
+    return popped;
   }
-  return poppedItem;
 };
 
 stackMethods.size = function() {

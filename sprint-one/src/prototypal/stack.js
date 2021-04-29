@@ -14,14 +14,12 @@ stackMethods.push = function(value) {
 };
 
 stackMethods.pop = function() {
-  var popped = this[this.currentKey];
-  this.currentKey--;
-  this.amount--;
-  if (this.amount < 0) {
-    this.currentKey++;
-    this.amount++;
+  if (this.amount !== 0) {
+    var popped = this[this.currentKey];
+    this.currentKey--;
+    this.amount--;
+    return popped;
   }
-  return popped;
 };
 
 stackMethods.size = function() {

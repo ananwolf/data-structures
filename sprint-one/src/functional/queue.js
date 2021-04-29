@@ -10,19 +10,18 @@ var Queue = function() {
   var backQueue = 0;
   someInstance.enqueue = function(value) {
     backQueue++;
-    storage[backQueue] = value;
     size++;
+    storage[backQueue] = value;
   };
 
   someInstance.dequeue = function() {
-    frontQueue++;
-    var keyToBeDeleted = storage[frontQueue];
-    delete storage[frontQueue];
-    size--;
-    if (size < 0) {
-      size++;
+    if (size !== 0) {
+      frontQueue++;
+      size--;
+      var dequeued = storage[frontQueue];
+      delete storage[frontQueue];
+      return dequeued;
     }
-    return keyToBeDeleted;
   };
 
   someInstance.size = function() {
