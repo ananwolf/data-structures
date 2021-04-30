@@ -19,18 +19,11 @@ class Stack {
       this.amount--;
       return popped;
     }
-
-    // if (this.amount < 0) {
-    //   this.amount++;
-    //   this.currentKey++;
-    // }
-
   }
 
   size() {
     return this.amount;
   }
-
 }
 
 var storage = new Stack();
