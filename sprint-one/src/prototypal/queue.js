@@ -1,28 +1,29 @@
 var Queue = function() {
-  var storage = Object.create(queueMethods);
-  storage.frontQueue = 0;
-  storage.backQueue = 0;
-  storage.amount = 0;
-  return storage;
+  var someInstance = Object.create(queueMethods);
+
+  someInstance._storage = {};
+  someInstance._start = 0;
+  someInstance._end = 0;
+
+  return someInstance;
 };
 
 var queueMethods = {};
 
 queueMethods.enqueue = function(value) {
-  this.backQueue++;
-  this.amount++;
-  this[this.backQueue] = value;
+  this._storage[this._end++] = value;
+
 };
 
 queueMethods.dequeue = function() {
-  if (this.amount !== 0) {
-    this.frontQueue++;
-    this.amount--;
-    var dequeued = this[this.frontQueue];
-    return dequeued;
+  var result = this._storage[this._start];
+  if ( this.size() ) {
+    delete this._storage[this._start];
+    this._start++;
   }
+  return result;
 };
 
 queueMethods.size = function() {
-  return this.amount;
+  return this._end - this._start;
 };
